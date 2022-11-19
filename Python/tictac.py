@@ -5,6 +5,7 @@ import time
 import webbrowser
 import TicTacDATA
 import locale
+import DownloaderGUI
 
 # Program kapatılmadan önce çalışacak metod
 @atexit.register
@@ -81,6 +82,9 @@ while True:
     elif secim == "browse":
         webbrowser.open("https://www.w3schools.com/python/default.asp")
         exit()
+
+    elif secim in "yutupindir":
+        DownloaderGUI.Calis()
 
     else:
         # Kısayol açımı ve kapanış
