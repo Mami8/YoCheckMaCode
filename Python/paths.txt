@@ -1,1 +1,0 @@
-{"hollow knight": "D:\\YoCheckMaCode\\Shortcuts\\hollow_knight.lnk", "code": "D:\\YoCheckMaCode\\Shortcuts\\VSCode.lnk", "kalinka": "D:\\YoCheckMaCode\\Shortcuts\\Kalinka.lnk", "spotify": "D:\\YoCheckMaCode\\Shortcuts\\Spotify.lnk", "zombies": "D:\\YoCheckMaCode\\Shortcuts\\PlantsVsZombies.lnk"}

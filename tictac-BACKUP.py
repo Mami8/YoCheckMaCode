@@ -3,6 +3,7 @@ import json
 import atexit
 import datetime
 import time
+import webbrowser
 
 # Program kapatılmadan önce çalışacak metod
 def ExitHandler(yollar):
@@ -40,18 +41,18 @@ print("Hello my Lord. Today's {0}th of {1}, {2}. Which corresponds to {3}".forma
 time.sleep(2)
 
 # Yolların ataması
-with open("D:\YoCheckMaCode\Python\paths.txt") as file:
-    icerik = file.read()
-    js = json.loads(icerik)
-    secenekler = js
+
+saves = open("D:/YoCheckMaCode/Python/paths.txt")
+secenekler = json.loads(saves.read())
+progSTR = ""
 
 # Ders programının listeye aktarımı
-with open("D:\YoCheckMaCode\Python\dersProg.txt") as file:
-    program = file.read().split(";")
-    progSTR = ""
+with open("D:/YoCheckMaCode/Python/dersProg.txt") as dersprog:
+    program = dersprog.read().split(";")
     for i in program:
-        progSTR = progSTR + i + " ||| "
+        progSTR = progSTR + "|||< " + i + " >|||\n"
     program.append(progSTR)
+
 
 # Döngü
 while True:
@@ -62,10 +63,20 @@ while True:
     if secim == "ğ":
         # Yeni kısayol eklenmesi
         trigger = input("Please, add a trigger to launch the application.\n>> ")
-        yol_ = input("Enter path of the shortcut that will get executed.\n>> ")
-        secenekler[trigger] = yol_
-        print("Function succesfully added!\n")
-        continue
+        yol_ = input("Enter the name of the shortcut file. Make sure to enter it's type (.exe .lnk etc).\n>> ")
+        _yol = yol + "\\" + yol_
+        print(_yol)
+
+        dogrumu = input("Is the path correct?(Y/N)\n>> ").lower().strip()
+        if dogrumu == "y":
+            secenekler[trigger] = _yol
+            print("Function succesfully added!\n")
+            continue
+
+        elif dogrumu == "n":
+            continue
+
+
     elif secim == "Ğ":
         # Çıkış
         ExitHandler(secenekler)
@@ -73,8 +84,15 @@ while True:
 
     elif secim.lower() == "dersprog":
         # Ders Programı
-        günSec = int(input("\nPlease, enter the index of the day you want. For all days, enter 7.\n>> ").strip())
-        print("The program of the {0} is:\n".format(İndextoGün(günSec)) + program[günSec])
+        günSec = input("\nPlease, enter the index of the day you want. For all days, enter 7.\n>> ").strip()
+        print("The program of the {0} is:\n".format(İndextoGün(günSec)) + program[int(günSec)])
+        continue
+
+
+    elif secim == "browse":
+        webbrowser.open("https://www.w3schools.com/python/default.asp")
+        ExitHandler(secenekler)
+        exit()
 
     else:
         # Kısayol açımı ve kapanış
