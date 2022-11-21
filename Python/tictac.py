@@ -7,13 +7,15 @@ import TicTacDATA
 import locale
 import DownloaderGUI
 
+
 # Program kapatılmadan önce çalışacak metod
 @atexit.register
 def ExitHandler():
-    TicTacDATA.baglantıKopar(TicTacDATA.con, True)
+    TicTacDATA.baglantikopar(TicTacDATA.con, True)
+
 
 # Girilen index değerinin cümle olarak düzenlenmesi
-def İndextoGün(index):
+def indextogun(index):
     match index:
         case "1":
             return "Pazartesi"
@@ -32,27 +34,28 @@ def İndextoGün(index):
         case "8":
             return "Tüm günler"
 
+
 secenekler = []
 yol = "D:/YoCheckMaCode/Shortcuts/"
 
-locale.setlocale(locale.LC_ALL , "Turkish_Turkey.1254")
+locale.setlocale(locale.LC_ALL, "Turkish_Turkey.1254")
 tarih = datetime.datetime.now()
-
 
 program = []
 
-
-print("Günaydın Lordum. Bugün günlerden {3}, {1}'ın {0}'i, {2}.".format(tarih.day, tarih.strftime("%B"), tarih.year, tarih.strftime("%A")))
+print("Günaydın Lordum. Bugün günlerden {3}, {1}'ın {0}'i, {2}.".format(tarih.day, tarih.strftime("%B"), tarih.year,
+                                                                        tarih.strftime("%A")))
 time.sleep(1)
 
 
 # Ders programının listeye aktarımı
-def DersProgramAl(günSayı):
+def dersprogramal(gunsayi):
     for i in TicTacDATA.ders_program:
-        if günSayı == str(i[0]):
-            return İndextoGün(günSayı)+ ":\n " + i[1]
+        if gunsayi == str(i[0]):
+            return indextogun(gunsayi) + ":\n " + i[1]
 
-# # Döngü
+
+# Döngü
 while True:
     print("")
     secim = input("Ne yapmamı istersiniz? (Yeni eylem eklemek için ğ, çıkış için Ğ giriniz)\n>> ").strip()
@@ -63,10 +66,10 @@ while True:
         trig = input("Tetikleyici giriniz.\n>> ")
         path = input("Shortcuts klasörü içindeki dosyayı uzantsı ile beraber giriniz.\n>> ").strip()
         alt_trig = input("Alternatif olarak kullanabileceğiniz bir tetikleyici giriniz.\n>> ")
-        
+
         path_ = yol + path
 
-        TicTacDATA.degerEkle(trig, path_, alt_trig)
+        TicTacDATA.degerekle(trig, path_, alt_trig)
 
     elif secim == "Ğ":
         # Çıkış
@@ -74,9 +77,9 @@ while True:
 
     elif secim.lower() == "dersprog":
         # Ders Programı
-        istekgün = input("Pazartesi 1, tüm günler 8 olacak şekilde programını istediğiniz günün sayısını giriniz.\n>> ")
+        istekgun = input("Pazartesi 1, tüm günler 8 olacak şekilde programını istediğiniz günün sayısını giriniz.\n>> ")
 
-        print(DersProgramAl(istekgün))
+        print(dersprogramal(istekgun))
 
 
     elif secim == "browse":
@@ -84,7 +87,7 @@ while True:
         exit()
 
     elif secim in "yutupindir":
-        DownloaderGUI.Calis()
+        DownloaderGUI.calis()
 
     else:
         # Kısayol açımı ve kapanış
@@ -109,7 +112,7 @@ while True:
         else:
             if TicTacDATA.trigKontrol(secim) != 0:
                 bulundu = True
-                    
+
         if bulundu:
             if not coklumod:
                 os.startfile(TicTacDATA.trigKontrol(secim.lower()))

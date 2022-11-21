@@ -1,13 +1,14 @@
 import sqlite3
 import atexit
 
+con = sqlite3.connect("D:/YoCheckMaCode/Python/TicTac.db")
+cursor = con.cursor()
+baglimi = True
+
 
 def bagla():
-    global con 
     con = sqlite3.connect("D:/YoCheckMaCode/Python/TicTac.db")
-    global cursor 
     cursor = con.cursor()
-    global baglimi
     baglimi = True
 
 
@@ -18,12 +19,17 @@ trigYolAlt = cursor.fetchall()
 cursor.execute("SELECT * FROM dersProgram")
 ders_program = cursor.fetchall()
 
+
 @atexit.register
-def baglantıKopar(baglanti = con, commitmode = True):
-    baglanti.close
+def baglantikopar(baglanti=con, commitmode=True):
+    if commitmode:
+        baglanti.close()
+    else:
+        baglanti.rollback()
     baglimi = False
 
-def yollarıAl():
+
+def yollarial():
     paths = []
 
     for i in trigYolAlt:
@@ -31,28 +37,24 @@ def yollarıAl():
     return paths
 
 
+def degerekle(trig="NULL", path="NULL", alt_trig="NULL"):
+    bagla()
 
-def degerEkle(trig = "NULL", path = "NULL", alt_trig = "NULL"):
-    if baglimi:
-        cursor.execute('INSERT INTO paths (trigger, path, alt_trigger) VALUES ("{}", "{}", "{}")'.format(trig, path, alt_trig))
-        print("Tetikleyici: {}\nYol: {}\nAltrnatif tetikleyici: {}".format(trig, path, alt_trig))
-        dogrumu = input("Bilgiler doğru mu? (Y/N)\n>> ").strip()
-        if dogrumu.lower() == "y":
-            print("Bilgiler eklendi.")
-            con.commit()
-        elif dogrumu.lower() == "n":
-            print("İşlem iptal edili")
-            con.rollback()
-        else:
-            print("Geçerli değer giriniz !!!")
+    cursor.execute(
+        'INSERT INTO paths (trigger, path, alt_trigger) VALUES ("{}", "{}", "{}")'.format(trig, path, alt_trig))
+    print("Tetikleyici: {}\nYol: {}\nAltrnatif tetikleyici: {}".format(trig, path, alt_trig))
+    dogrumu = input("Bilgiler doğru mu? (Y/N)\n>> ").strip()
+    if dogrumu.lower() == "y":
+        print("Bilgiler eklendi.")
+        con.commit()
+    elif dogrumu.lower() == "n":
+        print("İşlem iptal edili")
+        con.rollback()
     else:
-        a = input("Bağlantı yok. Tekrar bağla? (Y/N)").lower().strip()
-        if a == "y":
-            bagla()
-            print("Bağlantı kuruldu.")
+        print("Geçerli değer giriniz !!!")
+
 
 def trigKontrol(istenenTrig):
-
     bulundu = False
     bulunan = ""
 
@@ -63,7 +65,7 @@ def trigKontrol(istenenTrig):
             break
         else:
             bulundu = False
-            
+
     if bulundu:
         return bulunan
     else:
