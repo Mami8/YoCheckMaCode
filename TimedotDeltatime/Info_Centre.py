@@ -1,8 +1,8 @@
 import datetime
 
-import DatabaseController_Calendar as Database
+import OLD_Info_centre as Database
 
-print("\n\n¯\_(ツ)_/¯ The Date Manager from mamığ, to mamığ ¯\_(ツ)_/¯\n\n")
+print("\n\n¯\\_(ツ)_/¯ The Date Manager from mamığ, to mamığ ¯\\_(ツ)_/¯\n\n")
 
 # Main loop
 while True:
@@ -21,7 +21,7 @@ while True:
 
     elif secim == "1":
         while i < event_amount:
-            print(i, "  Name: ", names[i], "  Date: ", dates[i], "  NOT_TYPE: ", not_types[i])
+            print(i+1, "  Name: ", names[i], "  Date: ", dates[i], "  NOT_TYPE: ", not_types[i])
             i += 1
 
     elif secim.split(";")[0] == "ğ":

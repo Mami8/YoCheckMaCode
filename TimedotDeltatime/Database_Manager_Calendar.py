@@ -2,7 +2,7 @@ import atexit
 import locale
 from datetime import datetime
 
-import DatabaseController_Calendar as Database
+import OLD_Info_centre as Database
 
 locale.setlocale(locale.LC_ALL, "Turkish_Turkey.1254")
 today = datetime.now()
