@@ -91,4 +91,3 @@ def date_difference_finder(year, month, day):
     result = result.days
 
     return result
-

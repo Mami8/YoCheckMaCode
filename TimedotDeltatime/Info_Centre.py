@@ -1,13 +1,8 @@
-import information_manager
+import datetime
+
 import DatabaseController_Calendar as Database
 
-import atexit
-import datetime
-from win10toast import ToastNotifier
-
-
 print("\n\n¯\_(ツ)_/¯ The Date Manager from mamığ, to mamığ ¯\_(ツ)_/¯\n\n")
-
 
 # Main loop
 while True:
@@ -39,4 +34,3 @@ while True:
                 diff = Database.date_difference_finder(year, month, day)
                 print(diff)
                 continue
-

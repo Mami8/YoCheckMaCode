@@ -1,8 +1,8 @@
 import atexit
 import locale
+from datetime import datetime
 
 import DatabaseController_Calendar as Database
-from datetime import datetime
 
 locale.setlocale(locale.LC_ALL, "Turkish_Turkey.1254")
 today = datetime.now()
@@ -13,7 +13,6 @@ current_date = today.strftime("%d;%m;%y;%H").split(";")
 events, raw_dates, raw_not_types, event_amount = Database.data_retrieve()
 dates = []
 times = []
-
 
 for i in raw_dates:
     x, y = i.split("|")
@@ -38,7 +37,8 @@ def process():
             i = 0
             while i < event_amount:
                 print("-----------------------------------")
-                print("name = " + events[i], "\nDate = " + dates[i], "\nTime = " + times[i], "\nnot_type = " + raw_not_types[i])
+                print("name = " + events[i], "\nDate = " + dates[i], "\nTime = " + times[i],
+                      "\nnot_type = " + raw_not_types[i])
                 i += 1
         case "addevent":
             name = input("Please enter the name of the event\n>> ").strip()
