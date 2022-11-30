@@ -1,6 +1,6 @@
 import datetime
 
-import OLD_Info_centre as Database
+import DatabaseManager_Calendar as Database
 
 print("\n\n¯\\_(ツ)_/¯ The Date Manager from mamığ, to mamığ ¯\\_(ツ)_/¯\n\n")
 
@@ -11,7 +11,7 @@ while True:
 
     names, dates, not_types, event_amount = Database.data_retrieve()
 
-    secim = input("To see all events, type 1. This will also give you the numbers of events.\nTo find out how much "
+    secim = input("To see all events, type 1. This will also give you the numbers of events.\nTo add event, type addevent.\nTo find out how much "
                   "time left to an event, type ğ;(event name)\n"
                   "To exit type Ğ\n>> ").strip()
 
@@ -23,6 +23,21 @@ while True:
         while i < event_amount:
             print(i+1, "  Name: ", names[i], "  Date: ", dates[i], "  NOT_TYPE: ", not_types[i])
             i += 1
+        print("\n\n")
+
+    elif secim == "addevent":
+        newName = input("\nEnter the name for the event\n>> ")
+        newYear = input("Enter the year of the event in yyyy format\n>> ")
+        newMonth = input("Ente the month of the year in mm numerical format\n>> ")
+        newDay = input("Enter the day of the month in dd format\n>> ")
+        newTime = input("Enter the time of the event in hh format\n>> ")
+        newNotType = input("Enter the NOT_TYPE. ( day_before || hour_before)\n>> ")
+
+        newDate = Database.date_merger(newDay, newMonth, newYear, newTime)
+        Database.data_append(newName, newDate, newNotType)
+
+        print("\nOperation was succesfull!\n")
+        continue
 
     elif secim.split(";")[0] == "ğ":
         req = secim.split(";")[1]

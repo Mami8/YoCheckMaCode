@@ -1,12 +1,12 @@
 import atexit
 
-import OLD_Info_centre as Database
+import DatabaseManager_Calendar as Database
 
 from win10toast import ToastNotifier
 from datetime import datetime
 
 
-def notification(title, message, duration=5, icon_path="D:/Yumusak oyunlar/Grand Theft Auto San Andreas/Icon.ico"):
+def notification(title="NULL", message="NULL", duration=5, icon_path="D:/Yumusak oyunlar/Grand Theft Auto San Andreas/Icon.ico"):
     toast = ToastNotifier()
     toast.show_toast(title, message, icon_path, duration, threaded=True)
 
@@ -16,7 +16,7 @@ def ExitManager():
 
 
 while True:
-    nowHour = datetime.now().hour()
+    nowHour = datetime.now().hour
     today = datetime.today()
     dict_name_day = {}
     dates_ = []
@@ -28,17 +28,17 @@ while True:
         times_.append(i.split("|")[1])
 
     for i in range(event_amount):
-        year, month, day = dates_[i].split(";")
+        print(names[i])
+        day, month, year = dates_[i].split(";")
         rem_day = Database.date_difference_finder(year, month, day)
 
-        if not_types[i] == "day before":
+        if not_types[i] == "day_before":
 
-            if rem_day == 1:
+            if rem_day <= 1:
                 notification("Tomorrow", names[i])
                 exit()
 
         elif not_types[i] == "hour_before":
             if rem_day == 0:
-                if nowHour + 1 == times_[i]:
+                if nowHour + 1 >= times_[i]:
                     notification("In 1 hour", names[i])
-
