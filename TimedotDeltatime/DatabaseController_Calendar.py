@@ -1,3 +1,4 @@
+import datetime
 import sqlite3 as sqlite
 
 
@@ -62,10 +63,10 @@ def data_append(event_name, date, not_type):
     close_connection(con, True)
 
 
-def date_simplifier(day, month, year, hour):
+def date_merger(day, month, year, hour):
     """
     Inputs should be like (dd, mm, yy, hh) and not like (dd, Month, yyyy, hh:mm:ss).
-    Hour should be in 24-hour format.
+    Hour should be in 24-hour format. Example: 07, 15, 21, 00
     Return value can be used in data_append.
     Make sure to put in numeric date. If It's already in dd;mm;yy form, don't use this function and feed
     it directly to data_append. Program uses dd;mm;yy|hh format everywhere.
@@ -76,3 +77,17 @@ def date_simplifier(day, month, year, hour):
     hour = hour.strip()
 
     return day + ";" + month + ";" + year + "|" + hour
+
+
+def date_difference_finder(year, month, day):
+    """
+    Finds the difference between now and given date.
+    All parameters must be filled
+    Returns the days between. No hours included
+    """
+    now = datetime.datetime.today()
+    target_date = datetime.datetime(year, month, day)
+    result = target_date - now
+
+    return result
+

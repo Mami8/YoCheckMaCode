@@ -49,7 +49,7 @@ def process():
             if not_type != "day_before" and not_type != "hour_before":
                 print("Invlid not_type")
             else:
-                simp_time = Database.date_simplifier(date[0], date[1], date[2], time)
+                simp_time = Database.date_merger(date[0], date[1], date[2], time)
 
                 correct = input(name, not_type, date, time, "\nIs the information correct?( Y/N )").lower()
                 if correct != "y" and correct != "n":
