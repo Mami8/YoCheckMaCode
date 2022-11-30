@@ -11,4 +11,4 @@ def notification(title, message, duration=5, icon_path="D:/Yumusak oyunlar/Grand
 
 
 while True:
-
+    pass
