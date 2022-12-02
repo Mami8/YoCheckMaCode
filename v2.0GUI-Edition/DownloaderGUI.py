@@ -7,6 +7,11 @@ bg = "#212121"
 
 
 def calis(ROOT):
+    """Orjinalde normal kod olan kısım kütüphane formunda
+
+    Args:
+        ROOT (tkinter Tk object): tkinter.Tk() ile elde edilen nesne.
+    """
     root = ROOT
     root.title("Video İndirici")
     canvas = tk.Canvas(root, width=400, height=400, background="#212121")

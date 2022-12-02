@@ -6,13 +6,16 @@ from win10toast import ToastNotifier
 from datetime import datetime
 
 
-def notification(title="NULL", message="NULL", duration=5, icon_path="D:/Yumusak oyunlar/Grand Theft Auto San Andreas/Icon.ico"):
+def notification(title: str, message: str, duration=int):
     toast = ToastNotifier()
-    toast.show_toast(title, message, icon_path, duration, threaded=True)
+    toast.show_toast(title=title, msg=message, duration=duration, threaded=True)
 
 @atexit.register
 def ExitManager():
     notification("From mamığ, to mamığ", "Date Manager is down. ReOpen to gain functionality again.")
+
+
+notification("hello", "how are you", duration=5)
 
 
 while True:

@@ -4,6 +4,11 @@ import atexit
 
 
 def bagla():
+    """Aynı klasördeki Database'e bağlanır
+
+    Returns:
+        tuple: sqlite3 connection object ve sqlite3 cursor object dönderir
+    """
     con = sqlite3.connect("D:/YoCheckMaCode/v2.0GUI-Edition/database.db")
     cursor = con.cursor()
     baglimi = True
@@ -14,6 +19,12 @@ con, cursor = bagla()
 
 @atexit.register
 def baglantikopar(baglanti=con, commitmode=True):
+    """Bağlantıyı güvenli bir şekilde kapatır
+
+    Args:
+        baglanti (sqlite3 connection object, optional): Bağlantı nesnesi. Defaults to con.
+        commitmode (bool, optional): Verilerin kaydedibip kaydedilmeyeceğini belirtir. Defaults to True.
+    """    
     try:
         if commitmode:
             baglanti.commit()
@@ -26,6 +37,14 @@ def baglantikopar(baglanti=con, commitmode=True):
 
 
 def verial(curs=cursor):
+    """Database'den verileri toplar.
+
+    Args:
+        curs (sqlite3 cursor object, optional): Eğer farklı bir cursor kullanılacaksa belirtilmeli. Defaults to cursor.
+
+    Returns:
+        tuple: isimleri, yolları, sözlüğü ve dersprogramı
+    """ 
     db = cursor.execute("SELECT * FROM paths").fetchall()
     sozluk = {}
     isimler = []
@@ -45,6 +64,15 @@ isimler, paths, sozluk, program = verial(cursor)
 
 
 def degerekle(isim, path):
+    """Açılacak programlara ekleme yapar
+
+    Args:
+        isim (str): Uygulamanın görünen ismi. Herhangi değer alabilir.
+        path (str): Açılacak programın yolu.
+
+    Returns:
+        str: Uyarı metini. Sondaki ve baştaki boşluklar ayarlı.
+    """    
     bagla()
     try:
         cursor.execute(
@@ -55,6 +83,14 @@ def degerekle(isim, path):
 
 
 def yolual(istek):
+    """İstenilen programın yolunu döndürür
+
+    Args:
+        istek (str): istenilen programın ismi. Database'de bulunan isimle aynı olmalı
+
+    Returns:
+        str: İstenilen programın yolu
+    """    
     for k in sozluk:
         if istek in k[0]:
             return k[1]

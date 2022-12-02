@@ -23,11 +23,15 @@ canvas_secim = tk.Canvas(root, width=400, height=400, bg=bg)
 canvas_secim.pack()
 
 
-def yol_ekle_GUI():
+def yol_ekle_GUI(yol = "D:/YoCheckMaCode/Shortcuts/"):  
+    """Girilen yolu seçeneklere eklemek için panel açar
 
+    Args:
+        yol (str, optional): açılacak uygulamanın bulunduğu konum. Standart haldeki gibi sonuna / eklenmeli. Defaults to "D:/YoCheckMaCode/Shortcuts/".
+    """      
 
     def A():
-        database.degerekle(entry_isim.get(), entry_path.get())
+        database.degerekle(entry_isim.get(), yol + entry_path.get())
 
     canvas_yeniyol = tk.Canvas(root, width=400, height=400, bg=bg)
     canvas_yeniyol.pack(side="right")
@@ -48,12 +52,16 @@ def yol_ekle_GUI():
 
 
 def yol_ac():
+    """semimbox.get() kullanılarak seçilen öge alınır. Database'den gelen sözluk ile bu seçime ait yol alınır ve açılır
+    """
     secim = secimbox.get()
     yol = sozluk[secim]
     os.startfile(yol)
 
 
 def video_indir_GUI():
+    """downGUI.calis fonksiyonu çağrılır. Bir UI aracılığıyla YouTube'dan video indirm işlemi gerçekleşir
+    """
     downGUI.calis(root)
 
 
