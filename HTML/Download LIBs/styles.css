@@ -7,10 +7,58 @@ h1{
 p{
     color: #212121;
 }
-div{
+h1, h2 {
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+div.button{
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     background-color: aquamarine;
+    text-decoration: none;
+    text-align: left;
+    margin: 4px 2px;
+    border-radius: 15px;
 }
 
-a{
+div.paper{
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color:#4568;
     text-decoration: none;
+    text-align: left;
+    margin: 4px 2px;
+    border-radius: 15px;
+}
+a{
+    color: white;
+    text-decoration: underline;
+    text-decoration-color:crimson;;
+    font-family: "Trebuchet MS";
+}
+
+a.button{
+    background-color: #ff2403;
+    color: white;
+    padding: 20px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    border-radius: 15px;
+}
+li{
+    display: block;
+    padding-top: 10px;
+}
+footer{
+    padding: 20px;
+    background-color: aquamarine;
+    text-decoration: none;
+    text-align: center;
+    margin: 4px 2px;
+    border-radius: 15px;
+    color: white;
+    display: inline-block;
 }
