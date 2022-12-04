@@ -1,4 +1,3 @@
-I reccomend cloning the git repository
 If you want to get my finished/working projects and libs, download the index.html and HTML directory
 All you need can be accesed with index.html
 
