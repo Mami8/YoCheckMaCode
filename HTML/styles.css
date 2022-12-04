@@ -52,13 +52,4 @@ li{
     display: block;
     padding-top: 10px;
 }
-footer{
-    padding: 20px;
-    background-color: aquamarine;
-    text-decoration: none;
-    text-align: center;
-    margin: 4px 2px;
-    border-radius: 15px;
-    color: white;
-    display: inline-block;
-}
+
