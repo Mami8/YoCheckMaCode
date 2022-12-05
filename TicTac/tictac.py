@@ -3,9 +3,11 @@ import atexit
 import datetime
 import time
 import webbrowser
-import TicTacDATA
 import locale
+
+import TicTacDATA
 import DownloaderGUI
+import weather
 
 
 # Program kapatılmadan önce çalışacak metod
@@ -13,9 +15,15 @@ import DownloaderGUI
 def ExitHandler():
     TicTacDATA.baglantikopar(TicTacDATA.con, True)
 
-
-# Girilen index değerinin cümle olarak düzenlenmesi
 def indextogun(index):
+    """Verilen index değerinin güne dönüşümü
+
+    Args:
+        index (int): PazartesiPazartesi 1 pazar 7 ve tüm günler 8 olacak şekilde gün 
+
+    Returns:
+        str: Günün tam ismi
+    """
     match index:
         case "1":
             return "Pazartesi"
@@ -38,6 +46,20 @@ def indextogun(index):
 secenekler = []
 yol = "D:/YoCheckMaCode/Shortcuts/"
 
+def dersprogramal(gunsayi):
+    """Ders programını istenen güne göre döndürür
+
+    Args:
+        gunsayi (int): pazartesi 1 pazar 7 ve tüm günler 8 olacak şekilde gün 
+
+    Returns:
+        str: Ders programı
+    """
+    for i in TicTacDATA.ders_program:
+        if gunsayi == str(i[0]):
+            return indextogun(gunsayi) + ":\n " + i[1]
+
+lat, lon = weather.get_geocode("Afşin", "TR")
 locale.setlocale(locale.LC_ALL, "Turkish_Turkey.1254")
 tarih = datetime.datetime.now()
 
@@ -48,11 +70,6 @@ print("Günaydın Lordum. Bugün günlerden {3}, {1}'ın {0}'i, {2}.".format(tar
 time.sleep(1)
 
 
-# Ders programının listeye aktarımı
-def dersprogramal(gunsayi):
-    for i in TicTacDATA.ders_program:
-        if gunsayi == str(i[0]):
-            return indextogun(gunsayi) + ":\n " + i[1]
 
 
 # Döngü
@@ -88,7 +105,13 @@ while True:
 
     elif secim in "yutupindir":
         DownloaderGUI.calis()
+        
+    elif secim == "hava":
+        desc, temp = weather.get_weather(lat, lon)
+        print ("\nHava şu an", desc, "ve", temp, "derece selsiyus")
+        time.sleep(1)
 
+    # Yol açılımı
     else:
         # Kısayol açımı ve kapanış
 

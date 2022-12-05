@@ -38,6 +38,11 @@ a{
     text-decoration-color:crimson;;
     font-family: "Trebuchet MS";
 }
+a:hover{
+    text-decoration: none;
+    color: white;
+
+}
 
 a.button{
     background-color: #ff2403;
