@@ -1,8 +1,14 @@
 import datetime
 import requests
 
+""" 
+You need to create a appid.txt file in the same directory with this file
+Put your Open wheather API key inside that file
+It won't work otherwise
+"""
 
-api_key = "c55e7defba2526d6752e00fb37c10a7d"
+
+api_key = open("appid.txt", "r").read()
 
 
 def get_geocode(city="Afşin", country_code="TR"):
