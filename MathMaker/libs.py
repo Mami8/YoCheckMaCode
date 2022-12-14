@@ -64,12 +64,39 @@ class point():
         
         r = r1 + r2 + r3
         l = l1 + l2 + l3
-        alan = (abs(r-l))/2
+        
+        alan = abs(r-l)
+        alan = alan / 2
+        
         return alan
 
 
     def __repr__(self) -> str:
         return "x: %f, y: %f" % (self.x, self.y)
     
+class dogru():
+    def __init__(self, kx, ky, c=0):
+        self.kx = kx
+        self.ky = ky
+        
+        self.m = kx/ky*-1
+        self.c = c
+        
+        self.formula = "{}x;{}y;{}".format(self.kx, self.ky, self.c)
+    
+    def __repr__(self):
+        
+        str_formula = ""
+        
+        str_formula = str_formula + "{}x ".format(self.kx) if self.kx >= 0 else "- {} ".format(self.kx)
+        str_formula = str_formula + "+ {}y ".format(self.ky) if self.ky >= 0 else "- {} ".format(self.ky)
+        str_formula = str_formula + "+ {} ".format(self.c) if self.c >= 1 else "- {} ".format(self.c)
+        
+        str_formula = str_formula + "= 0"
+        return str_formula
 
+    
 origin = point(0, 0)
+dogru1 = dogru(3,5,1)
+
+print(dogru1)
