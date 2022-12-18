@@ -1,5 +1,5 @@
-Biten projelerime index.html ve HTML klasörünü indirerek ulaşabilirsiniz
-Şimdilik direk indirmek kolay olabilir ama ilerde buraya çok sayıda proje yüklersem altyapımın olması iyi birşey
+Biten projelerime index.html, Projects, Libs ve HTML klasörünü indirerek ulaşabilirsiniz
+Şimdilik direk indirmek kolay olabilir ama ilerde buraya çok sayıda proje yüklersem altyapımın hazır olması iyi birşey
 
 Çoğu dosya WIP (yapım aşamasında) fakat kullanıma uygun
 Gerekli bilgilendirme dosyalarda mevcut
@@ -12,7 +12,7 @@ Geri dönüşte bulunmanız beni memnun eder!
 
 ----------------------------------------------------------------
 
-If you want to get my finished/working projects and libs, download the index.html and HTML directory.
+If you want to get my finished/working projects and libs, download the index.html, Projects, Libs and HTML directory.
 Currently it may be easier to just download it manually but I hope to add many more files.
 It's better to get ready for that time
 
@@ -21,5 +21,5 @@ All of them have an description on how to use and docstring in functions.
 
 Links are in index.html such as this git profile and my email. 
 
-I created the libs for my own usage but everyone can use it!
+I created all of these for my own usage but everyone can use it!
 If it helps you in any way I am very happy. I am open for any suggestion about my code.
